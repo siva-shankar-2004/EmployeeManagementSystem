@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("ogbackground.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      animation: fadeInBody 1s ease-in;
+    }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 20px 40px;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #ffe;
+      text-shadow: 0 0 6px #ffffffcc;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      padding: 80px 60px;
+      gap: 50px;
+    }
+
+    .content {
+      max-width: 55%;
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .content h1 {
+      font-size: 3.2rem;
+      margin-bottom: 25px;
+    }
+
+    .content p {
+      font-size: 1.25rem;
+      line-height: 1.8;
+    }
+
+    .card {
+      background: white;
+      color: black;
+      padding: 30px 25px;
+      border-radius: 12px;
+      text-align: center;
+      animation: slideInRight 1s ease-out;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      max-width: 340px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      max-height: 220px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: transform 0.4s ease;
+    }
+
+    .card img:hover {
+      transform: scale(1.04);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #ffffff55;
+      margin: 0;
+    }
+
+    /* Scroll Section Styles */
+    .features-section {
+      padding: 60px 40px;
+     
+    }
+
+    .features-section h2,
+    .testimonials-section h2,
+    .cta-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    .features-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .feature-card {
+      background: white;
+      color: #222;
+      border-radius: 10px;
+      padding: 25px;
+      width: 300px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .testimonials-section {
+     
+      padding: 60px 30px;
+      color: #eee;
+    }
+
+    .testimonials-section blockquote {
+      font-style: italic;
+      margin-bottom: 20px;
+      text-align: center;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 60px 20px;
+      
+    }
+
+    .cta-section a {
+      text-decoration: none;
+      padding: 14px 28px;
+      background: #244485;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      display: inline-block;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .cta-section a:hover {
+      background: #3a5ca0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="login.html">Login</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <hr />
+
+  <!-- Main Hero Section -->
+  <div class="container">
+    <div class="content">
+      <h1>𝑬𝒎𝒑𝒍𝒐𝒚𝒆𝒆 𝑴𝒂𝒏𝒂𝒈𝒆𝒎𝒆𝒏𝒕 𝑺𝒚𝒔𝒕𝒆𝒎</h1>
+      <p>
+        Employee management is the process by which employers ensure workers perform their jobs to the best of their abilities so as to achieve business goals. It typically entails building and maintaining healthy relationships with employees, as well as monitoring their daily labor and measuring progress. In this way, employers can identify opportunities for improvement and recognize achievements.
+      </p>
+    </div>
+
+    <div class="card">
+      <img src="management-coaching-business-dealing-mentor-concept.jpg" alt="Employee Management" />
+      <h3>Monitor Workforce <br />Productivity & Engagement</h3>
+    </div>
+  </div>
+
+  <!-- Scroll Down Sections -->
+  <div class="features-section">
+    <h2>🔑 Key Features of Employee Management</h2>
+    <div class="features-cards">
+      <div class="feature-card">
+        <h3>📋 Task Allocation</h3>
+        <p>Assign tasks efficiently to employees and monitor progress in real-time.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>📈 Performance Tracking</h3>
+        <p>Track individual and team performance with insightful metrics and reports.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>💬 Communication</h3>
+        <p>Improve communication between departments using integrated messaging tools.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="testimonials-section">
+    <h2>💼 What Our Clients Say</h2>
+    <blockquote>“This system helped us streamline our HR processes and improve employee satisfaction.”</blockquote>
+    <blockquote>“Monitoring productivity and assigning tasks has never been easier.”</blockquote>
+    <blockquote>“It’s the perfect blend of simplicity and efficiency.”</blockquote>
+  </div>
+
+  <div class="cta-section">
+    <h2>🚀 Ready to Optimize Your Workforce?</h2>
+    <a href="login.html">Get Started Now</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('contact bg.webp') no-repeat center center/cover;
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .image-section {
+            flex: 1;
+        }
+        .image-section img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .form-section {
+            flex: 1;
+            padding-left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .contact-btn {
+            background-color: black;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+            align-items: center;
+        }
+        .social-icons a {
+            text-decoration: none;
+            font-size: 24px;
+            color: black;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-section">
+            <img src="contactimg.webp" alt="Contact Image">
+        </div>
+        <div class="form-section">
+            <h1>Contact Us</h1>
+            <form>
+                <label>Full Name</label>
+                <input type="text" name="fullname" required>
+                <label>E-mail</label>
+                <input type="email" name="email" required>
+                <label>Message</label>
+                <textarea name="message" rows="4" required></textarea>
+                <button class="contact-btn">Contact Us</button>
+            </form>
+            <div class="contact-info">
+                <p><strong>Contact</strong><br>ShajuTechz.com</p>
+                <p><strong>Based in</strong><br>Infopark,kochi</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/zoho/" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+                    <a href="https://x.com/zoho?lang=en" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="https://www.instagram.com/zoho/?hl=en#:~:text=Zoho%20(%40zoho)%20%E2%80%A2%20Instagram%20photos%20and%20videos"target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+function showemployee(){
+    fetch("http://localhost:8080/employees")
+    .then((response) => response.json())
+    .then((employeedetails) => {
+        const dataTable = document.getElementById("employeeDetails")
+
+        employeedetails.forEach(employeedetails => {
+            var row = `<tr>
+            <td>${employeedetails.id}</td>
+            <td>${employeedetails.name}</td>
+            <td>${employeedetails.age}</td>
+            <td>${employeedetails.gender}</td>
+            <td>${employeedetails.employeeroll}</td>
+            <td>${employeedetails.salary}</td>
+          
+            </tr>`;
+
+            dataTable.innerHTML+=row;
+        });
+    })
+    .catch(error => console.error('Error fetching electives:', error));
+}
+
+function showemployeetask(){
+    fetch("http://localhost:8080/employees/task") 
+    .then((response) => response.json()) 
+    .then((employeetask) => {
+        const dataTable = document.getElementById("employeetask")
+            
+        employeetask.forEach(employeetask => {
+            var row = `<tr>
+            <td>${employeetask.taskId}</td>
+            <td>${employeetask.employeeId}</td>
+            <td>${employeetask.taskname}</td>
+            <td>${employeetask.taskmanager}</td>
+            <td>${employeetask.deadline}</td>
+            </tr>`;
+
+            dataTable.innerHTML+=row;
+            
+        })
+        .catch(error => console.error('Error fetching electives:', error));
+    });
+}

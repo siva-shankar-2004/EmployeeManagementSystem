@@ -1,0 +1,11 @@
+com\example\Employees\model\employeedetails.class
+com\example\Employees\model\employeelogin.class
+com\example\Employees\model\Contact.class
+com\example\Employees\EmployeesApplication.class
+com\example\Employees\repository\employeetaskdetails.class
+com\example\Employees\model\employeetask.class
+com\example\Employees\repository\employeeregisterddetails.class
+com\example\Employees\controller\EmployeeController.class
+com\example\Employees\repository\employeelogindetails.class
+com\example\Employees\repository\Contactdetails.class
+com\example\Employees\service\EmployeeService.class

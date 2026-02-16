@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>EMPLOYEE DETAILS</title>
+  <style>
+    body {
+      background-image: url('ogbackground.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f5f5f5;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      margin-top: 30px;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    }
+
+    table {
+      margin: 40px auto 20px auto;
+      width: 80%;
+      border-collapse: collapse;
+      background-color: rgba(48, 48, 48, 0.6);
+      box-shadow: 0 0 20px rgba(20, 20, 20, 0.2);
+    }
+
+    th, td {
+      border: 1px solid #444;
+      padding: 15px;
+      color: #e0ffff;
+    }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      margin: 10px;
+    }
+
+    .edit-btn {
+      background-color: #00bcd4;
+      color: #fff;
+    }
+
+    .edit-btn:hover {
+      background-color: #16e4ff;
+    }
+
+    .delete-btn {
+      background-color: #3665f4;
+      color: #fff;
+    }
+
+    .delete-btn:hover {
+      background-color: #2884c6;
+    }
+
+    .footer-buttons {
+      margin-top: auto;
+      padding: 30px 0;
+    }
+
+    .add-btn {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .add-btn:hover {
+      background-color: #45a049;
+    }
+
+    .back-btn {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .back-btn:hover {
+      background-color: #e53935;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .popup {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      color: #0ff;
+      box-shadow: 0 0 15px #0ff;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .popup h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .popup p {
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .popup button {
+      background-color: #00ffd5;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <h2>EMPLOYEE DETAILS</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>EMPLOYEE ID</th>
+        <th>NAME</th>
+        <th>AGE</th>
+        <th>GENDER</th>
+        <th>ROLL</th>
+        <th>SALARY</th>
+        <th>ACTIONS</th>
+      </tr>
+    </thead>
+    <tbody id="employeeDetails"></tbody>
+  </table>
+
+  <div class="footer-buttons">
+    <button class="add-btn" onclick="window.location.href='addemployee.html'">➕ Add Employee</button>
+    <button class="back-btn" onclick="window.location.href='index.html'">← Back</button>
+  </div>
+
+  <!-- ✅ Popup Message -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <h3 id="popupTitle">Success!</h3>
+      <p id="popupMessage">Action completed successfully.</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    const apiUrl = "http://localhost:8080/employee";
+
+    function showemployee() {
+      fetch(apiUrl + "/getallemployee")
+        .then(res => res.json())
+        .then(data => {
+          const tableBody = document.getElementById('employeeDetails');
+          tableBody.innerHTML = "";
+          data.forEach(emp => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${emp.id}</td>
+              <td>${emp.name}</td>
+              <td>${emp.age}</td>
+              <td>${emp.gender}</td>
+              <td>${emp.roll}</td>
+              <td>${emp.salary}</td>
+              <td>
+                <button class="edit-btn" onclick="updateEmployee(${emp.id})">Update</button>
+                <button class="delete-btn" onclick="deleteEmployee(${emp.id})">Delete</button>
+              </td>`;
+            tableBody.appendChild(row);
+          });
+        });
+    }
+
+    function updateEmployee(id) {
+      fetch(`${apiUrl}/updateemployee/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({}) // Replace with actual data if needed
+      })
+        .then(res => res.ok ? showPopup('Updated Successfully!', 'Employee details updated.') : Promise.reject("Failed"))
+        .then(showemployee)
+        .catch(err => console.error("Update error:", err));
+    }
+
+    function deleteEmployee(id) {
+      fetch(`${apiUrl}/deleteemployee/${id}`, {
+        method: "DELETE"
+      })
+        .then(res => res.ok ? showPopup('Deleted Successfully!', 'Employee record deleted.') : Promise.reject("Failed"))
+        .then(showemployee)
+        .catch(err => console.error("Delete error:", err));
+    }
+
+    function showPopup(title, message) {
+      document.getElementById('popupTitle').textContent = title;
+      document.getElementById('popupMessage').textContent = message;
+      document.getElementById('popupOverlay').style.display = 'flex';
+    }
+
+    function closePopup() {
+      document.getElementById('popupOverlay').style.display = 'none';
+    }
+
+    window.onload = showemployee;
+  </script>
+</body>
+</html>

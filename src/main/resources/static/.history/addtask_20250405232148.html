@@ -1,0 +1,89 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Task</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* All your existing styles remain unchanged */
+    body {
+      background: url('background image.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Poppins', sans-serif;
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form {
+      background: rgba(0, 20, 40, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 150, 255, 0.3);
+      width: 100%;
+      max-width: 450px;
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 15px rgba(0, 150, 255, 0.3);
+      text-align: center;
+    }
+
+    /* rest of your CSS continues... */
+  </style>
+</head>
+<body>
+  <form id="taskForm">
+    <h2>ADD EMPLOYEE TASK</h2>
+
+    <label for="employeeId">Enter your Employee ID</label>
+    <input type="text" id="employeeId" name="employeeId" required />
+
+    <label for="taskId">Enter Task ID</label>
+    <input type="text" id="taskId" name="taskId" required />
+
+    <label for="taskname">Enter The Task</label>
+    <input type="text" id="taskname" name="taskname" required />
+
+    <label for="taskmanager">Task Manager</label>
+    <input type="text" id="taskmanager" name="taskmanager" required />
+
+    <label for="deadline">Task Deadline</label>
+    <input type="text" id="deadline" name="deadline" required />
+
+    <div class="button-container">
+      <button type="submit">Submit</button>
+      <button type="button" onclick="location.href='choice.html'">← Back</button>
+    </div>
+  </form>
+
+  <script>
+    document.getElementById("taskForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+
+      fetch("http://localhost:8080/employees/task", {
+        method: "POST",
+        body: new URLSearchParams(formData),
+      })
+      .then((response) => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.text();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+        window.location.href = "popup.html";
+      })
+      .catch((error) => {
+        alert("Failed to add task. Try again.");
+        console.error("Error:", error);
+      });
+    });
+  </script>
+</body>
+</html> -->
+
+

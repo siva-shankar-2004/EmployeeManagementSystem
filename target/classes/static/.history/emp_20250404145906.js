@@ -1,0 +1,40 @@
+function showelectives(){
+    fetch("http://localhost:8080/employees")
+    .then((response) => response.json())
+    .then((electives) => {
+        const dataTable = document.getElementById("employeDetails")
+
+        electives.forEach(elective => {
+            var row = `<tr>
+            <td>${elective.electiveid}</td>
+            <td>${elective.electivename}</td>
+            <td>${elective.faculty}</td>
+            <td>${elective.hours}</td>
+            </tr>`;
+
+            dataTable.innerHTML+=row;
+        });
+    })
+    .catch(error => console.error('Error fetching electives:', error));
+}
+
+function showEnrolledStudents(){
+    fetch("http://localhost:8080/elective/reisterd") 
+    .then((response) => response.json()) 
+    .then((students) => {
+        const dataTable = document.getElementById("enrolledStudent")
+            
+        students.forEach(student => {
+            var row = `<tr>
+            <td>${student.rollno}</td>
+            <td>${student.name}</td>
+            <td>${student.emailid}</td>
+            <td>${student.electivename}</td>
+            </tr>`;
+
+            dataTable.innerHTML+=row;
+            
+        })
+        .catch(error => console.error('Error fetching electives:', error));
+    });
+}

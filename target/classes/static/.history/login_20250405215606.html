@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #dbe0e8, #2a5298);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: white;
+      color: black;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .login-container h2 {
+      margin-bottom: 20px;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: -5px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background: #244485;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background: #1b3365;
+    }
+    .back-home-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+
+.back-home-btn:hover {
+    background-color: #0056b3;
+}
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>EMPLOYEE LOGIN</h2>
+    <input type="text" id="username" placeholder="Employee User ID" required>
+    <div id="error-message" class="error-message"></div> <!-- Error shown here -->
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="button" onclick="login()">Login</button>
+
+
+    <input type="text" placeholder="𝑨𝒅𝒎𝒊𝒏 𝑰𝒅" required>
+    <input type="password" placeholder="𝑷𝒂𝒔𝒔𝒘𝒐𝒓𝒅" required>
+    <button type="submit">Login</button>
+
+  </div>
+  <!-- Back to Home button -->
+  <div style="margin-top: 30px;">
+    <button class="back-home-btn" onclick="location.href='index.html'">← Back </button>
+</div>
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const errorDiv = document.getElementById("error-message");
+
+      // Clear any previous error message
+      errorDiv.textContent = "";
+
+      fetch("http://localhost:8080/employees/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `email=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "choice.html";
+        } else {
+          errorDiv.textContent = "Invalid username or password.";
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        errorDiv.textContent = "An error occurred. Please try again.";
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Task</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      background: url('background image.jpg') no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px 25px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      text-align: center;
+      color: #42f58d;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.85);
+      font-size: 1em;
+    }
+
+    .button-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 12px;
+      width: 48%;
+      background: #42f58d;
+      border: none;
+      border-radius: 30px;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #2ee07d;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <form onsubmit="handleSubmit(event)">
+    <h2>Add Employee Task</h2>
+
+    <label for="employeeId">Employee ID</label>
+    <input type="text" id="employeeId" name="employeeId" required>
+
+    <label for="taskId">Task ID</label>
+    <input type="text" id="taskId" name="taskId" required>
+
+    <label for="taskname">Task Name</label>
+    <input type="text" id="taskname" name="taskname" required>
+
+    <label for="taskmanager">Task Manager</label>
+    <input type="text" id="taskmanager" name="taskmanager" required>
+
+    <label for="deadline">Deadline</label>
+    <input type="datetime-local" id="deadline" name="deadline" required>
+
+    <div class="button-container">
+      <button type="submit">Submit</button>
+      <button type="button" onclick="location.href='choice.html'">Back</button>
+    </div>
+  </form>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      // Simulate task submission
+      setTimeout(() => {
+        window.location.href = "popup.html";
+      }, 500);
+    }
+  </script>
+</body>
+</html>

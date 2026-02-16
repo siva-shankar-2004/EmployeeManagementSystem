@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee Login</title>
+  <style>
+    body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('loginog.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            color: #333;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            /* Light transparent background for contrast */
+        }
+
+        .login-container h1 {
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .login-container input:focus {
+            border-color: #244485;
+            box-shadow: 0 0 8px rgba(36, 68, 133, 0.4);
+        }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: -5px;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .login-container button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition:background 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background: #0056b3;
+        }
+
+    .back-home-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+
+.back-home-btn:hover {
+    background-color: #0056b3;
+}
+  </style>
+</head>
+<body>
+  <div class="login-container">
+   
+    <h1>𝑨𝒅𝒎𝒊𝒏 𝑳𝒐𝒈𝒊𝒏</h1>
+    <div class="paddin">
+    <input type="text" id="username" placeholder="𝑨𝒅𝒎𝒊𝒏 𝑰𝒅" required>
+    <div id="error-message" class="error-message"></div> <!-- Error shown here -->
+    <input type="password" id="password" placeholder="𝑷𝒂𝒔𝒔𝒘𝒐𝒓𝒅" required>
+    <button type="button" onclick="login()">Login</button>
+  </div>
+
+
+  </div>
+  <!-- Back to Home button -->
+  <div style="margin-top: 30px;">
+    <button class="back-home-btn" onclick="location.href='index.html'">← Back </button>
+</div>
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const errorDiv = document.getElementById("error-message");
+
+      // Clear any previous error message
+      errorDiv.textContent = "";
+
+      fetch("http://localhost:8080/employees/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `email=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "choice.html";
+        } else {
+          errorDiv.textContent = "Invalid username or password.";
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        errorDiv.textContent = "An error occurred. Please try again.";
+      });
+    }
+  </script>
+</body>
+</html>

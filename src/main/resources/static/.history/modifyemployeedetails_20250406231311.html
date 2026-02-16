@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Modify Employee Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      color: white;
+      padding: 40px;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    label, input {
+      display: block;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #00ffcc;
+      color: #000;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #22e7d0;
+    }
+
+    /* Popup Styling */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(20, 20, 20, 0.9);
+      padding: 30px;
+      border-radius: 16px;
+      text-align: center;
+      z-index: 1000;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+    }
+
+    .checkmark {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 4px solid #00ffcc;
+      position: relative;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+
+    .checkmark::after {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      width: 20px;
+      height: 40px;
+      border-right: 4px solid #00ffcc;
+      border-bottom: 4px solid #00ffcc;
+      transform: rotate(45deg);
+    }
+
+    .popup h2 {
+      color: #00ffcc;
+    }
+
+    .popup button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="employeeForm">
+    <h2>Modify Employee</h2>
+    <label for="id">Employee ID:</label>
+    <input type="text" id="id" name="id" required />
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required />
+
+    <label for="gender">Gender:</label>
+    <input type="text" id="gender" name="gender" required />
+
+    <label for="employeeroll">Role:</label>
+    <input type="text" id="employeeroll" name="employeeroll" required />
+
+    <label for="salary">Salary:</label>
+    <input type="text" id="salary" name="salary" required />
+
+    <button type="button" onclick="updateEmployee()">Update</button>
+    <button type="button" onclick="deleteEmployee()">Delete</button>
+  </form>
+
+  <!-- Custom Popup -->
+  <div class="popup" id="popup">
+    <div class="checkmark"></div>
+    <h2 id="popupMsg">Success!</h2>
+    <button onclick="closePopup()">OK</button>
+  </div>
+
+  <script>
+    function showPopup(message) {
+      document.getElementById("popupMsg").innerText = message;
+      document.getElementById("popup").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+
+    function updateEmployee() {
+      const id = document.getElementById("id").value;
+      const name = document.getElementById("name").value;
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+      const employeeroll = document.getElementById("employeeroll").value;
+      const salary = document.getElementById("salary").value;
+
+      fetch(`http://localhost:8080/employees/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          name, age, gender, employeeroll, salary
+        })
+      })
+      .then(response => {
+        if (response.ok) {
+          showPopup("Employee Updated Successfully!");
+        } else {
+          showPopup("Update Failed. Employee Not Found.");
+        }
+      })
+      .catch(() => showPopup("Server Error. Please Try Again."));
+    }
+
+    function deleteEmployee() {
+      const id = document.getElementById("id").value;
+
+      fetch(`http://localhost:8080/employees/${id}`, {
+        method: "DELETE"
+      })
+      .then(response => {
+        if (response.ok) {
+          showPopup("Employee Deleted Successfully!");
+        } else {
+          showPopup("Delete Failed. Employee Not Found.");
+        }
+      })
+      .catch(() => showPopup("Server Error. Please Try Again."));
+    }
+  </script>
+
+</body>
+</html>
