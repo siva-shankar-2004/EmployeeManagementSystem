@@ -1,5 +1,5 @@
-# Use Java 17
-FROM openjdk:17-jdk-slim
+# Use a working OpenJDK 17 image
+FROM openjdk:17-oracle
 
 # Set working directory
 WORKDIR /app
@@ -19,5 +19,5 @@ COPY target/Employees-0.0.1-SNAPSHOT.jar app.jar
 # Expose port 8080
 EXPOSE 8080
 
-# Run the app
+# Run the jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
